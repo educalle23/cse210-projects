@@ -13,7 +13,7 @@ class Program
         {
             Console.WriteLine("Enter a list of numbers, type 0 when finished.");
             number = int.Parse(Console.ReadLine());
-            numbers.Add(number);
+            
 
             if (number !=0)
             {
