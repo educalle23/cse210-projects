@@ -47,7 +47,6 @@ class Program
 
         // numbers.Sort();
         // foreach (int numberSort in numbers);
-        // Console.WriteLine($"{numbers}");
     }
     
 }
