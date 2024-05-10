@@ -1,7 +1,9 @@
 using System.IO;
+using Microsoft.VisualBasic;
 public class Journal
 {
     public List<Entry> _entries = new List<Entry>();
+    public List<VariantType> newEntry = new List<VariantType>();
     public void AddEntry(Entry entryText)
     {
         _entries.Add(entryText);
@@ -36,8 +38,6 @@ public class Journal
 
     public void LoadFromFile(string loadFile)
     {
-
-
         try
         {
             _entries.Clear(); // Clear existing entries before loading new ones
@@ -46,23 +46,15 @@ public class Journal
                 string line;
                 while ((line = reader.ReadLine()) != null)
                 {
-                    string[] parts = line.Split(',');
-                    Journal newEntry = new Journal();
-                    string date = parts[0];
-                    string promptText = parts[1];
-                    string entryText = parts[2];
-                    // _entries.Add(newEntry);
+                    // Journal newEntry = new Journal();
+                    // string[] parts = line.Split(',');
+                    // newEntry.date = parts[0];
+                    // newEntry.promptText = parts[1];
+                    // newEntry.entryText = parts[2];
+
+                    // loadFile.Add(newEntry);
                 }
 
-
-                //     if (parts.Length == 3)
-                //     {
-                //         string date = parts[0];
-                //         string promptText = parts[1];
-                //         string entryText = parts[2];
-                //         _entries.Add(new Entry(date, promptText, entryText));
-                //     }
-                // }
             }
             Console.WriteLine("Journal loaded from file: " + loadFile);
         }
