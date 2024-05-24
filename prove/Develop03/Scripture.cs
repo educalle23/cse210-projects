@@ -1,6 +1,3 @@
-using System.Collections.Generic;
-using System.Linq;
-
 public class Scripture
 {
     private Reference _reference;
@@ -10,65 +7,65 @@ public class Scripture
     {
         _reference = reference;
         _words = new List<Word>();
-        foreach (var word in text.Split(' '))
+
+        string[] wordsArray = text.Split(' ');
+        foreach (string word in wordsArray)
         {
             _words.Add(new Word(word));
         }
     }
 
-    public Reference GetReference()
-    {
-        return _reference;
-    }
-
-    public void SetReference(Reference reference)
-    {
-        _reference = reference;
-    }
-
-    public List<Word> GetWords()
-    {
-        return _words;
-    }
-
-    public void SetWords(List<Word> words)
-    {
-        _words = words;
-    }
-
-    public void HideRandomWords(int wordsToHide)
+    public void HideRandomWords(int numberToHide)
     {
         Random random = new Random();
-        int hiddenCount = 0;
+        List<Word> unhiddenWords = new List<Word>();
 
-        while (hiddenCount < wordsToHide)
+        foreach (var word in _words)
         {
-            int index = random.Next(_words.Count);
-            if (!_words[index].GetIsHidden())
+            if (!word.IsHidden())
             {
-                _words[index].Hide();
-                hiddenCount++;
+                unhiddenWords.Add(word);
             }
         }
+
+        if (unhiddenWords.Count == 0)
+        {
+            return;
+        }
+
+        List<Word> wordsToHide = new List<Word>();
+        for (int i = 0; i < numberToHide && unhiddenWords.Count > 0; i++)
+        {
+            int index = random.Next(unhiddenWords.Count);
+            wordsToHide.Add(unhiddenWords[index]);
+            unhiddenWords.RemoveAt(index);
+        }
+
+        foreach (var word in wordsToHide)
+        {
+            word.Hide();
+        }
     }
 
-    public bool AreAllWordsHidden()
+    public string GetDisplayText()
+    {
+        string displayText = _reference.ToString() + ": ";
+        foreach (var word in _words)
+        {
+            displayText += word.GetDisplayText() + " ";
+        }
+        return displayText.TrimEnd();
+    }
+
+    public bool IsCompletelyHidden()
     {
         foreach (var word in _words)
         {
-            if (!word.GetIsHidden())
+            if (!word.IsHidden())
+            {
                 return false;
+            }
         }
         return true;
-    }
-
-    public void Display()
-    {
-        Console.WriteLine($"{_reference}:");
-        foreach (var word in _words)
-        {
-            Console.Write(word.Display() + " ");
-        }
-        Console.WriteLine();
     }
 }

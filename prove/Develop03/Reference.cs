@@ -1,7 +1,3 @@
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Linq;
-
 public class Reference
 {
     private string _book;

@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-
-
 public class Word
 {
     private string _text;
@@ -18,28 +14,25 @@ public class Word
         return _text;
     }
 
-    public void SetText(string text)
-    {
-        _text = text;
-    }
-
-    public bool GetIsHidden()
+    public bool IsHidden()
     {
         return _isHidden;
     }
 
-    public void SetIsHidden(bool isHidden)
-    {
-        _isHidden = isHidden;
-    }
-
     public void Hide()
     {
-        SetIsHidden(true);
+        _isHidden = true;
     }
 
-    public string Display()
+    public string GetDisplayText()
     {
-        return GetIsHidden() ? new string('_', GetText().Length) : GetText();
+        if (_isHidden)
+        {
+            return new string('_', _text.Length);
+        }
+        else
+        {
+            return _text;
+        }
     }
 }
