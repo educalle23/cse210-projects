@@ -1,0 +1,17 @@
+750
+SimpleGoal, read, reading a lot, 100, True
+EternalGoal, go to the temple, temple evryday, 300
+ChecklistGoal, shop, shoping, 50, 3, 150, 100
+ChecklistGoal, dream, dreaming, 100, 3, 3, 200
+SimpleGoal, read, reading a lot, 100, True
+EternalGoal, go to the temple, temple evryday, 300
+ChecklistGoal, shop, shoping, 50, 3, 150, 100
+ChecklistGoal, dream, dreaming, 100, 3, 3, 200
+SimpleGoal, read, reading a lot, 100, True
+EternalGoal, go to the temple, temple evryday, 300
+ChecklistGoal, shop, shoping, 50, 3, 150, 100
+ChecklistGoal, dream, dreaming, 100, 3, 3, 200
+SimpleGoal, read, reading a lot, 100, True
+EternalGoal, go to the temple, temple evryday, 300
+ChecklistGoal, shop, shoping, 50, 3, 150, 100
+ChecklistGoal, dream, dreaming, 100, 3, 3, 200

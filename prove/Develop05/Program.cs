@@ -2,93 +2,85 @@ using System;
 
 class Program
 {
-    public static void Main()
+    static void Main(string[] args)
     {
-        // Creating instances and populating data
-        Video video1 = new Video("Cool Gadgets Review", "Tech Guru", 1200);
-        Video video2 = new Video("Unboxing New Smartphone", "Mobile Man", 900);
-        Video video3 = new Video("DIY Craft Ideas", "Crafty Lady", 1500);
+        GoalManager manager = new GoalManager();
+        manager.Start();
 
-        Comment comment1 = new Comment("Alice", "Great video!");
-        Comment comment2 = new Comment("Bob", "Very informative.");
-        Comment comment3 = new Comment("Charlie", "I love this!");
-
-        Comment comment4 = new Comment("Dave", "Amazing unboxing!");
-        Comment comment5 = new Comment("Eve", "Can’t wait to try this phone.");
-        Comment comment6 = new Comment("Frank", "Looks awesome!");
-
-        Comment comment7 = new Comment("Grace", "Wonderful ideas!");
-        Comment comment8 = new Comment("Heidi", "I will definitely try this.");
-        Comment comment9 = new Comment("Ivan", "So creative!");
-
-        video1.AddComment(comment1);
-        video1.AddComment(comment2);
-        video1.AddComment(comment3);
-
-        video2.AddComment(comment4);
-        video2.AddComment(comment5);
-        video2.AddComment(comment6);
-
-        video3.AddComment(comment7);
-        video3.AddComment(comment8);
-        video3.AddComment(comment9);
-
-        List<Video> videos = new List<Video> { video1, video2, video3 };
-
-        // Displaying the videos and their comments
-        foreach (var video in videos)
+        while (true)
         {
-            Console.WriteLine(video);
-            Console.WriteLine(new string('-', 40));
-        }
-    }
-    public class Comment
-    {
-        public string Name { get; set; }
-        public string Text { get; set; }
+            Console.WriteLine("1. Display Player Info");
+            Console.WriteLine("2. List Goal Names");
+            Console.WriteLine("3. List Goal Details");
+            Console.WriteLine("4. Create Goal");
+            Console.WriteLine("5. Record Event");
+            Console.WriteLine("6. Save Goals");
+            Console.WriteLine("7. Load Goals");
+            Console.WriteLine("0. Exit");
 
-        public Comment(string name, string text)
-        {
-            Name = name;
-            Text = text;
-        }
+            int choice = int.Parse(Console.ReadLine());
 
-        public override string ToString()
-        {
-            return $"{Name}: {Text}";
+            switch (choice)
+            {
+                case 1:
+                    manager.DisplayPlayerInfo();
+                    break;
+                case 2:
+                    manager.ListGoalNames();
+                    break;
+                case 3:
+                    manager.ListGoalDetails();
+                    break;
+                case 4:
+                    CreateGoal(manager);
+                    break;
+                case 5:
+                    Console.Write("Enter goal name: ");
+                    string goalName = Console.ReadLine();
+                    manager.RecordEvent(goalName);
+                    manager.DisplayPlayerInfo();
+                    break;
+                case 6:
+                    manager.SaveGoals();
+                    break;
+                case 7:
+                    manager.LoadGoals();
+                    break;
+                case 0:
+                    return;
+            }
         }
     }
 
-    public class Video
+    static void CreateGoal(GoalManager manager)
     {
-        public string Title { get; set; }
-        public string Author { get; set; }
-        public int Length { get; set; }
-        private List<Comment> Comments { get; set; }
+        Console.WriteLine("1. Simple Goal");
+        Console.WriteLine("2. Eternal Goal");
+        Console.WriteLine("3. Checklist Goal");
+        int choice = int.Parse(Console.ReadLine());
 
-        public Video(string title, string author, int length)
-        {
-            Title = title;
-            Author = author;
-            Length = length;
-            Comments = new List<Comment>();
-        }
+        Console.Write("Enter goal name: ");
+        string name = Console.ReadLine();
+        Console.Write("Enter goal description: ");
+        string description = Console.ReadLine();
+        Console.Write("Enter goal points: ");
+        int points = int.Parse(Console.ReadLine());
 
-        public void AddComment(Comment comment)
+        switch (choice)
         {
-            Comments.Add(comment);
-        }
-
-        public int GetCommentCount()
-        {
-            return Comments.Count;
-        }
-
-        public override string ToString()
-        {
-            string commentsStr = string.Join("\n", Comments);
-            return $"Title: {Title}\nAuthor: {Author}\nLength: {Length} seconds\nNumber of Comments: {GetCommentCount()}\nComments:\n{commentsStr}";
+            case 1:
+                manager.CreateGoal(new SimpleGoal(name, description, points));
+                break;
+            case 2:
+                manager.CreateGoal(new EternalGoal(name, description, points));
+                break;
+            case 3:
+                Console.Write("Enter target amount: ");
+                int target = int.Parse(Console.ReadLine());
+                Console.Write("Enter bonus points: ");
+                int bonus = int.Parse(Console.ReadLine());
+                manager.CreateGoal(new ChecklistGoal(name, description, points, target, bonus));
+                break;
         }
     }
-
 }
