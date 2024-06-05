@@ -6,13 +6,13 @@ namespace EventPlanning
     {
         static void Main(string[] args)
         {
-            Lecture lecture = new Lecture("Tech Talk", "A talk on the latest in technology.", new DateTime(2024, 6, 15), "10:00 AM", "123 Main St", "Dr. Smith", 100);
-            Reception reception = new Reception("Networking Event", "An opportunity to meet and network with industry professionals.", new DateTime(2024, 6, 20), "6:00 PM", "456 Elm St", "rsvp@example.com");
-            OutdoorGathering outdoorGathering = new OutdoorGathering("Community Picnic", "A picnic for the whole community.", new DateTime(2024, 7, 4), "12:00 PM", "789 Park Ave", "Sunny");
+            Lecture lecture = new Lecture("Vargas signature", "Vargas will present and sign his new book The City of Cats.", new DateTime(2024, 6, 15), "10:00 AM", "Av. Venezuela", "Vargas Llosa", 100);
+            Reception reception = new Reception("They don't Know me son!", "An opportunity to recharge your energy and be unbeatable", new DateTime(2024, 6, 20), "6:00 PM", "456 Elm St", "RSPV by goggins@example.com");
+            OutdoorGathering outdoorGathering = new OutdoorGathering("Community Brunch", "A Brunch for the whole community.", new DateTime(2024, 7, 4), "12:00 PM", "789 Park Ave", "Sunny");
 
             while (true)
             {
-                Console.WriteLine("\nMaya Event Planning Menu:");
+                Console.WriteLine("\nEvent Planning Menu:");
                 Console.WriteLine("1. Display Lecture Details");
                 Console.WriteLine("2. Display Reception Details");
                 Console.WriteLine("3. Display Outdoor Gathering Details");
@@ -52,13 +52,13 @@ namespace EventPlanning
             switch (detailChoice)
             {
                 case "1":
-                    Console.WriteLine("\n" + eventDetails.StandardDetails() + "\n");
+                    Console.WriteLine(eventDetails.StandardDetails());
                     break;
                 case "2":
-                    Console.WriteLine("\n" + eventDetails.FullDetails() + "\n");
+                    Console.WriteLine(eventDetails.FullDetails());
                     break;
                 case "3":
-                    Console.WriteLine("\n" + eventDetails.ShortDescription() + "\n");
+                    Console.WriteLine(eventDetails.ShortDescription());
                     break;
                 default:
                     Console.WriteLine("Invalid choice, please try again.");
@@ -67,3 +67,4 @@ namespace EventPlanning
         }
     }
 }
+
